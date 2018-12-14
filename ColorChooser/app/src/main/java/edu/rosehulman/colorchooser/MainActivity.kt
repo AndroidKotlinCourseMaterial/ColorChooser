@@ -1,22 +1,15 @@
 package edu.rosehulman.colorchooser
 
-import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.RelativeLayout
-import android.widget.TextView
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
-    // CONSIDER: Would be better bundled as a data object.
-    private val message = "This is your phone. Please rescue me!"
-    private val backgroundColor = Color.GREEN
 
+    private var colorMessage = ColorMessage()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +25,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        content_main_message.text = message
-        content_main_layout.setBackgroundColor(backgroundColor)
+        content_main_message.text = colorMessage.message
+        content_main_layout.setBackgroundColor(colorMessage.backgroundColor)
     }
 
 

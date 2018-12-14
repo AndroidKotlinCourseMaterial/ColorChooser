@@ -10,14 +10,11 @@ import kotlinx.android.synthetic.main.activity_input.*
 
 class InputActivity : AppCompatActivity() {
 
-    private var currentBackgroundColor: Int = 0
-    private var message: String? = null
+    private var colorMessage = ColorMessage("Hello World", Color.GRAY)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_input)
-        message = "Hello World"
-        currentBackgroundColor = Color.GRAY
         updateUI()
 
         activity_input_button.setOnClickListener {
@@ -26,15 +23,15 @@ class InputActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        activity_input_message.setText(message)
-        activity_input_layout.setBackgroundColor(currentBackgroundColor)
+        activity_input_message.setText(colorMessage.message)
+        activity_input_layout.setBackgroundColor(colorMessage.backgroundColor)
     }
 
     // From https://android-arsenal.com/details/1/1693
     private fun showColorDialog() {
         val builder = ColorPickerDialogBuilder.with(this)
         builder.setTitle("Choose HSV color")
-        builder.initialColor(currentBackgroundColor)
+        builder.initialColor(colorMessage.backgroundColor)
         builder.wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
         builder.density(6)
         builder.setOnColorSelectedListener { selectedColor ->
@@ -45,8 +42,8 @@ class InputActivity : AppCompatActivity() {
             ).show()
         }
         builder.setPositiveButton(android.R.string.ok) { dialog, selectedColor, allColors ->
-            currentBackgroundColor = selectedColor
-            message = activity_input_message.text.toString()
+            colorMessage.message = activity_input_message.text.toString()
+            colorMessage.backgroundColor = selectedColor
             updateUI()
             // TODO: Use an intent to send info back to the
             // activity that called this one for a result.
