@@ -38,13 +38,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_info ->
+            R.id.action_info -> {
                 // TODO: Launch a new Info Activity that is a ScrollingActivity.
                 true
-            R.id.action_change_color ->
+            }
+            R.id.action_change_color -> {
                 // TODO: Launch the InputActivity to get a result
                 true
-
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
